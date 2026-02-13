@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rachel's Adventure</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <canvas id="gameCanvas" width="1024" height="683" aria-label="2D retro game canvas"></canvas>
+      <div id="uiLayer">
+        <section id="preludePanel" aria-live="polite">
+          <p>hi bebs :) I was so excited to make this for you. Make sure your volume is on and I hope you enjoy!</p>
+          <button id="preStartBtn" type="button">Start</button>
+        </section>
+        <button id="skipBtn" type="button">Skip Stage</button>
+        <button id="beginBtn" type="button">Begin</button>
+        <section id="connectionsPanel" aria-live="polite">
+          <h2>First Challenge: Connections</h2>
+          <p id="connectionsStatus">Pick four words that belong together.</p>
+          <div id="solvedGroups"></div>
+          <p id="connectionsComplete"></p>
+          <div id="wordGrid"></div>
+          <div class="connections-controls">
+            <button id="submitGroupBtn" type="button">Submit Group</button>
+            <button id="clearSelectionBtn" type="button">Deselect All</button>
+            <button id="shuffleWordsBtn" type="button">Shuffle</button>
+          </div>
+        </section>
+        <section id="wordlePanel" aria-live="polite">
+          <h2>Second Challenge: Wordle</h2>
+          <p id="wordleStatus">Guess the five-letter word.</p>
+          <div id="wordleGrid"></div>
+          <div class="challenge-controls">
+            <input id="wordleInput" type="text" maxlength="5" autocomplete="off" />
+            <button id="wordleSubmitBtn" type="button">Submit</button>
+            <button id="wordleResetBtn" type="button">Reset</button>
+          </div>
+        </section>
+        <section id="finalChallengePanel" aria-live="polite">
+          <h2>Final Challenge</h2>
+          <p id="finalChallengeQuestion">Is Nathan the absolute goat and do you love him even though he destroys you in wii sports?</p>
+          <div class="challenge-controls">
+            <button id="finalYesOneBtn" type="button">Yes</button>
+            <button id="finalYesTwoBtn" type="button">Yes</button>
+          </div>
+        </section>
+        <section id="decoderPanel" aria-live="polite">
+          <h2>Oh no! The 3-word message is scrambled! Can you use the three words to determine the secret message? You have 3 tries and 3 Hints</h2>
+          <p id="decoderPattern">_ _ _ &nbsp; _ _ _ _ &nbsp; _ _ _ _</p>
+          <p id="decoderStatus">You have 3 tries.</p>
+          <div class="challenge-controls">
+            <input id="decoderInput" type="text" autocomplete="off" />
+            <button id="decoderSubmitBtn" type="button">Submit</button>
+            <button id="decoderHintBtn" type="button">Hint</button>
+          </div>
+        </section>
+        <div id="continuePrompt">Press SPACE to continue</div>
+      </div>
+    </main>
+    <script src="game.js"></script>
+  </body>
+</html>
