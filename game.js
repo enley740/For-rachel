@@ -157,7 +157,7 @@ const connectionsCategories = [
   {
     name: "Timothy Chalamet Movies",
     color: "#9ce3a7",
-    words: ["Beautiful Boy", "The King", "Dune", "Marty Supreme"],
+    words: ["Beautiful Boy", "Miss Stevens", "Dune", "Marty Supreme"],
   },
   {
     name: "Things that are Korean",
