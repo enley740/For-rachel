@@ -14,8 +14,8 @@ body {
 
 .game-shell {
   position: relative;
-  width: min(100vw - 24px, 1024px);
-  aspect-ratio: 1024 / 683;
+  width: min(96vw, calc(96vh * (1024 / 683)));
+  height: min(96vh, calc(96vw * (683 / 1024)));
 }
 
 canvas {
@@ -302,4 +302,6 @@ button {
 
 #finalChallengePanel .challenge-controls {
   justify-content: center;
+  margin-top: 18px;
+  gap: 20px;
 }

@@ -116,7 +116,7 @@ const assets = {
 };
 
 const cityDialogue = [
-  "This is little Rachel. She is a girl who lives in a big city.",
+  "This is little Rachel. A beautiful 22 year old girl who lives in a big city.",
   "Rachel yearns to venture beyond the hustle and bustle of urban life",
   "So even though she loved busy season at Deloitte...",
   "She left",
@@ -136,23 +136,39 @@ const autumnDialogue = [
   "Rachel: I want fruit"
 ];
 
-const ch2Dialogue = "Humus: Hi Rachel. I've been sent to give you your second challenge. Wordle!";
-const ch2Congrats = "Congratulations rachel! Here is your second message";
+const ch2Dialogue = "Hummus: Hi Rachel. I've been sent to give you your second challenge. Wordle!";
+const ch2Congrats = "Hummus: Congratulations rachel! Here is your second message";
 const ch2PaperMessage =
   "I hope you like this game so far. You're my Wordle, the way you're the first thing I think about every morning (or afternoon depending on when I wake up). Your next word is 'Erab'.";
 
 const finalDialogue = "Gertrude: Hi Rachel, it's me again. Welcome to your final challenge! This is the hardest one yet.";
-const finalMessage = "Good answer! As a reward, here's your final message";
+const finalMessage = "Gertrude: Good answer! As promised, here's your final message";
 const ch1GertrudeMessage = "Gertrude: Nice job! Here is your first message from your secret admirer";
 const ch1PaperMessage =
   "Hello bebs! Congratulations on completing your very first challenge! I always love playing Connections with you. The first word of my secret message is 'Huo'";
 const finalPaperMessage = "Hi Bebs! You completed the game! Woohoo! The very last word is 'Naej'";
 
 const connectionsCategories = [
-  { name: "Things that glow", color: "#f8df74", words: ["STAR", "NEON", "EMBER", "CANDLE"] },
-  { name: "Ways to show love", color: "#9ce3a7", words: ["HUG", "KISS", "GIFT", "NOTE"] },
-  { name: "Autumn vibes", color: "#8fc6ff", words: ["LEAVES", "HARVEST", "SWEATER", "CIDER"] },
-  { name: "City sights", color: "#c7a3ff", words: ["SUBWAY", "SKYLINE", "TRAFFIC", "ALLEY"] },
+  {
+    name: "Begins with the first word of a Tyler, the Creator album",
+    color: "#f8df74",
+    words: ["Cherry Sprite", "Flower Box Donuts", "Wolf Spider", "Call Me By Your Name"],
+  },
+  {
+    name: "Timothy Chalamet Movies",
+    color: "#9ce3a7",
+    words: ["Beautiful Boy", "The King", "Dune", "Marty Supreme"],
+  },
+  {
+    name: "Things that are Korean",
+    color: "#c7a3ff",
+    words: ["Kim Jae-jin", "Moo doo", "Danji Fried Chicken", "Nathan"],
+  },
+  {
+    name: "Located in International district",
+    color: "#8fc6ff",
+    words: ["Pho Bac", "H Mart", "Oasis", "The boat"],
+  },
 ];
 
 const game = {
