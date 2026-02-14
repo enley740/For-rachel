@@ -448,7 +448,7 @@ function startBirdFlightsForStage(stageKey) {
 
 function updateWalkGrassAudio() {
   const anyWalkerMoving = rachel.moving || owlet.moving || dude.moving;
-  const rightEntryPreRoll = delayedRightEntry.active && delayedRightEntry.waitMs <= 1000;
+  const rightEntryPreRoll = delayedRightEntry.active && delayedRightEntry.waitMs <= 300;
   const shouldPlay = anyWalkerMoving || rightEntryPreRoll;
 
   if (shouldPlay && !walkGrassPlaying) {
@@ -863,7 +863,7 @@ function placeWalkerFromRight(walker, targetX) {
   walker.frameTimer = 0;
 }
 
-function scheduleWalkerFromRight(scene, walker, targetX, waitMs = 2000) {
+function scheduleWalkerFromRight(scene, walker, targetX, waitMs = 300) {
   walker.active = false;
   walker.moving = false;
   delayedRightEntry.active = true;
