@@ -244,7 +244,7 @@ const connections = {
 };
 
 const wordle = {
-  target: "BRUHH",
+  target: "BEBES",
   maxAttempts: 6,
   guesses: [],
   currentInput: "",

@@ -72,6 +72,7 @@ button {
 }
 
 #beginBtn {
+  display: none;
   position: absolute;
   left: 50%;
   bottom: 16%;
