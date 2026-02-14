@@ -247,6 +247,10 @@ button {
   background: #4b4f62;
 }
 
+.wordle-cell.active {
+  border-color: #ffe59c;
+}
+
 .challenge-controls {
   display: flex;
   gap: 8px;
@@ -302,6 +306,7 @@ button {
 
 #finalChallengePanel .challenge-controls {
   justify-content: center;
-  margin-top: 18px;
+  margin-top: auto;
+  margin-bottom: 24px;
   gap: 20px;
 }

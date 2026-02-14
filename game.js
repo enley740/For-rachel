@@ -18,7 +18,6 @@ const shuffleWordsBtn = document.getElementById("shuffleWordsBtn");
 const wordlePanel = document.getElementById("wordlePanel");
 const wordleStatus = document.getElementById("wordleStatus");
 const wordleGrid = document.getElementById("wordleGrid");
-const wordleInput = document.getElementById("wordleInput");
 const wordleSubmitBtn = document.getElementById("wordleSubmitBtn");
 const wordleResetBtn = document.getElementById("wordleResetBtn");
 
@@ -248,6 +247,7 @@ const wordle = {
   target: "BRUHH",
   maxAttempts: 6,
   guesses: [],
+  currentInput: "",
   message: "Guess the five-letter word.",
 };
 
@@ -985,6 +985,9 @@ function enterFinalMessageScene() {
 function enterDecoderScene() {
   setScene(SCENE.DECODER);
   resetDecoder();
+  requestAnimationFrame(() => {
+    decoderInput.focus();
+  });
 }
 
 function enterFinaleScene() {
@@ -1118,8 +1121,8 @@ function scoreWordleGuess(guess, target) {
 
 function resetWordle() {
   wordle.guesses = [];
+  wordle.currentInput = "";
   wordle.message = "Guess the five-letter word.";
-  wordleInput.value = "";
   renderWordleUI();
 }
 
@@ -1129,14 +1132,18 @@ function renderWordleUI() {
 
   const rows = wordle.maxAttempts;
   for (let row = 0; row < rows; row += 1) {
-    const guess = wordle.guesses[row] || "";
-    const states = guess.length === 5 ? scoreWordleGuess(guess, wordle.target) : [];
+    const submittedGuess = wordle.guesses[row] || "";
+    const isCurrentRow = row === wordle.guesses.length && wordle.guesses.length < wordle.maxAttempts;
+    const guess = isCurrentRow ? wordle.currentInput : submittedGuess;
+    const states = submittedGuess.length === 5 ? scoreWordleGuess(submittedGuess, wordle.target) : [];
     for (let col = 0; col < 5; col += 1) {
       const cell = document.createElement("div");
       cell.className = "wordle-cell";
       cell.textContent = guess[col] || "";
       if (states[col]) {
         cell.classList.add(states[col]);
+      } else if (isCurrentRow && col === wordle.currentInput.length) {
+        cell.classList.add("active");
       }
       wordleGrid.appendChild(cell);
     }
@@ -1145,7 +1152,7 @@ function renderWordleUI() {
 
 function submitWordleGuess() {
   ensureAudio();
-  const guess = wordleInput.value.toUpperCase().replace(/[^A-Z]/g, "");
+  const guess = wordle.currentInput;
   if (guess.length !== 5) {
     wordle.message = "Word must be five letters.";
     renderWordleUI();
@@ -1159,7 +1166,7 @@ function submitWordleGuess() {
   }
 
   wordle.guesses.push(guess);
-  wordleInput.value = "";
+  wordle.currentInput = "";
 
   if (guess === wordle.target) {
     wordle.message = "Correct!";
@@ -2055,6 +2062,31 @@ function submitConnectionsSelection() {
 }
 
 function onKeyDown(event) {
+  if (game.scene === SCENE.WORDLE) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      submitWordleGuess();
+      return;
+    }
+    if (event.key === "Backspace") {
+      event.preventDefault();
+      if (wordle.currentInput.length > 0) {
+        wordle.currentInput = wordle.currentInput.slice(0, -1);
+        renderWordleUI();
+      }
+      return;
+    }
+    if (/^[a-zA-Z]$/.test(event.key)) {
+      event.preventDefault();
+      if (wordle.currentInput.length < 5) {
+        wordle.currentInput += event.key.toUpperCase();
+        renderWordleUI();
+      }
+      return;
+    }
+    return;
+  }
+
   const tag = event.target && event.target.tagName ? event.target.tagName.toUpperCase() : "";
   const isTypingField = tag === "INPUT" || tag === "TEXTAREA";
   if (isTypingField && event.code === "Space") {
@@ -2066,13 +2098,6 @@ function onKeyDown(event) {
     event.preventDefault();
     if (!event.repeat) {
       onSpacePressed();
-    }
-    return;
-  }
-
-  if (game.scene === SCENE.WORDLE) {
-    if (event.key === "Enter") {
-      submitWordleGuess();
     }
     return;
   }
@@ -2124,9 +2149,6 @@ function installUIHandlers() {
     renderConnectionsUI();
   });
 
-  wordleInput.addEventListener("input", () => {
-    wordleInput.value = wordleInput.value.toUpperCase().replace(/[^A-Z]/g, "").slice(0, 5);
-  });
   wordleSubmitBtn.addEventListener("click", submitWordleGuess);
   wordleResetBtn.addEventListener("click", () => {
     ensureAudio();
